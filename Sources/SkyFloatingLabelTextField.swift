@@ -106,6 +106,20 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
             updateTitleLabel()
         }
     }
+    
+    // MARK: Components spacing
+    
+    @IBInspectable dynamic open var lineVerticalSpacing: CGFloat = 0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable dynamic open var titleVerticalSpacing: CGFloat = 0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
 
     /// A UIColor value that determines the text color of the title label when in the normal state
     @IBInspectable dynamic open var titleColor: UIColor = .gray {
@@ -568,7 +582,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
             x: superRect.origin.x,
             y: titleHeight,
             width: superRect.size.width,
-            height: superRect.size.height - titleHeight - selectedLineHeight
+            height: superRect.size.height - titleHeight - selectedLineHeight - lineVerticalSpacing
         )
         return rect
     }
@@ -586,7 +600,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
             x: superRect.origin.x,
             y: titleHeight,
             width: superRect.size.width,
-            height: superRect.size.height - titleHeight - selectedLineHeight
+            height: superRect.size.height - titleHeight - selectedLineHeight - lineVerticalSpacing
         )
         return rect
     }
@@ -601,7 +615,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
             x: 0,
             y: titleHeight(),
             width: bounds.size.width,
-            height: bounds.size.height - titleHeight() - selectedLineHeight
+            height: bounds.size.height - titleHeight() - selectedLineHeight - lineVerticalSpacing
         )
         return rect
     }
@@ -687,7 +701,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      - returns: the content size to be used for auto layout
      */
     override open var intrinsicContentSize: CGSize {
-        return CGSize(width: bounds.size.width, height: titleHeight() + textHeight())
+        return CGSize(width: bounds.size.width, height: titleHeight() + textHeight() + lineVerticalSpacing)
     }
 
     // MARK: - Helpers
